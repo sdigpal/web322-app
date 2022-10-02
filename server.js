@@ -7,7 +7,7 @@
 * Name: __Sandeep Digpal____ Student ID: __126454214_____ Date: ____01-10-2022_____
 *
 * Online (Cyclic) URL:
-* ___________https://zany-red-ray-coat.cyclic.app_______________
+* ___________https://zany-red-ray-coat.cyclic.app
 *
 ********************************************************************************/
 var HTTP_PORT = process.env.PORT || 8080;
