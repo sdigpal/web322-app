@@ -36,16 +36,6 @@ exports.getAllEmployees = () =>{
     })
 };
 
-exports.getDepartments = () => {
-    return new Promise((resolve,reject) => {
-        if (departments.length == 0) {
-            reject ('no result');
-        }
-        else {
-            resolve (departments);
-        }
-    })
-};
 exports.getManagers = () => {
     return new Promise ((resolve, reject) => {
         var managers = employees.filter(employee => employee.isManager == true);
@@ -56,4 +46,14 @@ exports.getManagers = () => {
     })
 };
 
+exports.getDepartments = () => {
+    return new Promise((resolve,reject) => {
+        if (departments.length == 0) {
+            reject ('no result');
+        }
+        else {
+            resolve (departments);
+        }
+    })
+};
 
