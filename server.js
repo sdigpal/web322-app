@@ -65,3 +65,11 @@ dataservice.initialize().then(() => {
 }).catch (() => {
     console.log('promises not stisfied');
 });
+
+app.get('/employees/add', (req, res)=>{
+    res.sendFile(path.join(__dirname + "/views/addEmployee.html"));
+});
+
+app.get('/images/add', (req, res)=>{
+    res.sendFile(path.join(__dirname + "/views/addImage.html"));
+});
