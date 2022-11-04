@@ -21,6 +21,9 @@ onHttpStart = ()=>{
     console.log('Express http server listening on port ' + HTTP_PORT);
 }
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 var storage = multer.diskStorage({
     destination: "./public/images/uploaded",
     filename: function (req, file, cb) {
@@ -52,6 +55,12 @@ app.get("/employees", (req, res)=>{
     })
 });
 
+app.post('/employees/add', (req,res) => {
+    dataservice.addEmployee(req.body).then(() => {
+        res.redirect("/employees");
+    })
+});
+
 app.get("/managers", (req, res)=>{
     dataservice.getManagers().then((data) =>{
         res.json({data});
@@ -77,7 +86,7 @@ app.get('/images/add', (req, res)=>{
 });
 
 app.post("/images/add", upload.single("imageFile"), (req,res) => {
-    res.send("/images");
+    res.redirect("/images");
 });
 
 app.get("/images", (req,res) => {
