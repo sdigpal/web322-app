@@ -66,7 +66,7 @@ dataservice.initialize().then(() => {
     console.log('promises not stisfied');
 });
 
-app.get('/employees/add', (req, res)=>{
+app.get('addEmployee', (req, res)=>{
     res.sendFile(path.join(__dirname + "/views/addEmployee.html"));
 });
 
