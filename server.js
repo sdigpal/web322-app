@@ -13,11 +13,23 @@
 var HTTP_PORT = process.env.PORT || 8080;
 var express = require("express");
 var app = express();
+var multer = require("multer");
+var fs = require('fs');
 var path = require('path');
 var dataservice = require(__dirname + "/data-service.js");
 onHttpStart = ()=>{
     console.log('Express http server listening on port ' + HTTP_PORT);
 }
+
+var storage = multer.diskStorage({
+    destination: "./public/images/uploaded",
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname));
+        }
+})
+
+var upload = multer({ storage: storage});
+
 app.use(express.static('public'));
 
 app.get('/', (req, res)=>{
@@ -62,6 +74,16 @@ app.get('/employees/add', (req, res)=>{
 
 app.get('/images/add', (req, res)=>{
     res.sendFile(path.join(__dirname + "/views/addImage.html"));
+});
+
+app.post("/images/add", upload.single("imageFile"), (req,res) => {
+    res.send("/images");
+});
+
+app.get("/images", (req,res) => {
+    fs.readdir("./public/images/uploaded", function(err,items) {
+        res.json(items);
+    })
 });
 
 app.use((req, res)=>{
