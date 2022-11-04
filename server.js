@@ -56,6 +56,14 @@ app.get("/departments", (req, res)=>{
     })
 });
 
+app.get('/employees/add', (req, res)=>{
+    res.sendFile(path.join(__dirname + "/views/addEmployee.html"));
+});
+
+app.get('/images/add', (req, res)=>{
+    res.sendFile(path.join(__dirname + "/views/addImage.html"));
+});
+
 app.use((req, res)=>{
     res.status(404).end('404 PAGE NOT FOUND');
 });
@@ -64,12 +72,4 @@ dataservice.initialize().then(() => {
     app.listen(HTTP_PORT, onHttpStart());
 }).catch (() => {
     console.log('promises not stisfied');
-});
-
-app.get('/employees/add', (req, res)=>{
-    res.sendFile(path.join(__dirname + "/views/addEmployee.html"));
-});
-
-app.get('/images/add', (req, res)=>{
-    res.sendFile(path.join(__dirname + "/views/addImage.html"));
 });
