@@ -57,3 +57,17 @@ exports.getDepartments = () => {
     })
 };
 
+exports.addEmployee = (employeeData) => {
+    employeeData.isManager==undefined ? employeeData.isManager = false : employeeData.isManager = true;
+    employeeData.employeeNum = employees.length + 1;
+    employees.push(employeeData);
+
+    return new Promise((resolve,reject) => {
+        if (employees.length == 0) {
+            reject ('no results');
+        }
+        else {
+            resolve(employees);
+        }
+    })
+};
